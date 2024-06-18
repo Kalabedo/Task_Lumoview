@@ -18,6 +18,10 @@ export const Background = () => {
   // Zustand store functions to set clear functions
   const setCLEAR_COMMENT = useViewer((state) => state.setCLEAR_COMMENT);
   const setCLEAR_BLUR = useViewer((state) => state.setCLEAR_BLUR);
+  const setCLEAR_LAST_COMMENT = useViewer(
+    (state) => state.setCLEAR_LAST_COMMENT
+  );
+  const setCLEAR_LAST_BLUR = useViewer((state) => state.setCLEAR_LAST_BLUR);
 
   // Use deferred value to load the texture in the background
   const deferred = useDeferredValue(`./textures/image_${QUALITY}.webp`);
@@ -71,11 +75,36 @@ export const Background = () => {
     setMeshes(meshes.filter((mesh) => mesh.type !== "circle"));
   };
 
-  // Set the clear functions in the Zustand store
+  const clearLastText = () => {
+    setMeshes((prevMeshes) => {
+      const lastTextIndex = prevMeshes
+        .map((mesh) => mesh.type)
+        .lastIndexOf("text");
+      if (lastTextIndex !== -1) {
+        return prevMeshes.filter((_, index) => index !== lastTextIndex);
+      }
+      return prevMeshes;
+    });
+  };
+
+  const clearLastCircle = () => {
+    setMeshes((prevMeshes) => {
+      const lastCircleIndex = prevMeshes
+        .map((mesh) => mesh.type)
+        .lastIndexOf("circle");
+      if (lastCircleIndex !== -1) {
+        return prevMeshes.filter((_, index) => index !== lastCircleIndex);
+      }
+      return prevMeshes;
+    });
+  };
+
   useEffect(() => {
     setCLEAR_COMMENT(() => clearTexts());
     setCLEAR_BLUR(() => clearCircles());
-  }, [setCLEAR_COMMENT, setCLEAR_BLUR, clearTexts, clearCircles]);
+    setCLEAR_LAST_COMMENT(() => clearLastText());
+    setCLEAR_LAST_BLUR(() => clearLastCircle());
+  }, []);
 
   return (
     <>

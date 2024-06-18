@@ -21,16 +21,17 @@ export const UI = () => {
   const setBLUR_SIZE = useViewer((state) => state.setBLUR_SIZE);
   const CLEAR_COMMENT = useViewer((state) => state.CLEAR_COMMENT);
   const CLEAR_BLUR = useViewer((state) => state.CLEAR_BLUR);
+  const CLEAR_LAST_COMMENT = useViewer((state) => state.CLEAR_LAST_COMMENT);
+  const CLEAR_LAST_BLUR = useViewer((state) => state.CLEAR_LAST_BLUR);
+
+  console.log(CLEAR_LAST_BLUR);
 
   return (
     <>
       <div className="HUD-container">
         <div className="logo-container">
           <a href="https://www.lumoview.com/">
-            <img
-              src="./textures/logo.webp"
-              alt="Logo"
-            />
+            <img src="./textures/logo.webp" alt="Logo" />
           </a>
         </div>
         <div className="button-container">
@@ -93,6 +94,13 @@ export const UI = () => {
           <Button
             variant="contained"
             startIcon={<ClearRoundedIcon />}
+            onClick={() => CLEAR_LAST_COMMENT()}
+          >
+            Clear last comment
+          </Button>
+          <Button
+            variant="contained"
+            startIcon={<ClearRoundedIcon />}
             onClick={() => CLEAR_COMMENT()}
           >
             Clear all comments
@@ -113,6 +121,13 @@ export const UI = () => {
             Select your blur radius and hit <strong>Enter</strong>. To blur a
             specific area of the image <strong>Right-Click</strong> it!
           </p>
+          <Button
+            variant="contained"
+            startIcon={<ClearRoundedIcon />}
+            onClick={() => CLEAR_LAST_BLUR()}
+          >
+            Clear last blur
+          </Button>
           <Button
             variant="contained"
             startIcon={<ClearRoundedIcon />}
