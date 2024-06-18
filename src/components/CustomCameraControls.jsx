@@ -5,8 +5,6 @@ export const CustomCameraControls = () => {
 
   const LOCK = useViewer((state) => state.LOCK);
 
-  console.log(LOCK);
-
   return (
     <>
       <CameraControls
@@ -15,7 +13,7 @@ export const CustomCameraControls = () => {
         minDistance={0}
         polarRotateSpeed={-0.5}
         azimuthRotateSpeed={-0.5}
-        dampingFactor={0}
+        enabled={!LOCK}
       />
     </>
   );

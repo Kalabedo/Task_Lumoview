@@ -1,12 +1,11 @@
-import { Background } from "./Background"
-import { CustomCameraControls } from "./CustomCameraControls"
+import { Background } from "./Background";
+import { CustomCameraControls } from "./CustomCameraControls";
 
 export const Experience = () => {
-    return(
-        <>
-
-            <Background />
-            <CustomCameraControls />
-        </>
-    )
-}
+  return (
+    <>
+      <Background />
+      <CustomCameraControls />
+    </>
+  );
+};
